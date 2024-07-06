@@ -27,6 +27,71 @@ HABoard relies on the following custom components:
 6. **week-planner-card**:
     - Repository: [week-planner-card](https://github.com/FamousWolf/week-planner-card)
 
+## Weekly Planner Config
+The weekly planner has been heavily modified by use of [card-mod](https://github.com/thomasloven/lovelace-card-mod).
+Summary of modifications:
+1. **Weekdays are shown above first row of days**
+2. **Today is highlighted with a red circle**
+3. **Past events darkened**
+3. **General font changes**
+4. **Padding and margin changes**
+
+```yaml
+card_mod:
+  style:
+	.: |
+	  ha-card {
+		margin-top: 0px;
+		font-size: 9px !important;
+		overflow: hidden;
+		--days-spacing: 10px;
+		--event-padding: 2px !important;
+		--events-margin-top: 1px;
+		--event-border-width: 2px;
+	  }
+	  .event.past {
+		opacity: 0.3;
+	  }
+	  .none {
+		background-color: transparent !important;
+	  }
+	  .container .day {
+		width: calc((100% - 6 * var(--days-spacing)) / 7) !important;
+	  }
+	  .container .day .date {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	  }
+	  .container .day .date .number {
+		order: 2;
+		height: 40px;
+		width: 40px;
+		padding: 8px;
+		margin-top: 5px;
+		display: table-cell;
+		vertical-align: middle;
+		text-align: center;
+		font-weight: 300;
+		font-family: "Roboto", sans-serif;
+	  }
+	  .container .day .date .text {
+		order: 1;
+		font-weight: 500;
+		font-family: "Roboto", sans-serif;
+		font-size: 18px !important;
+	  }
+	  .today .date .number {
+		background-color: #ff0000 !important;
+		border-radius: 50%;
+	  }
+	  .container .day:nth-child(n+8) .date .text {
+		display: none;
+	  }
+```
+
+
 ## Dynamic Photo Updates
 The photo displayed on HABoard is replaced every 5 minutes. This photo is downloaded from a shared iCloud album using a Python script from the [iclouder repository](https://github.com/arogers86/iclouder).
 
@@ -58,3 +123,4 @@ Example configuration for the photo card:
   url: /local/images/icloud_photo.jpg
   noMargin: true
   refresh_interval: 3
+```
