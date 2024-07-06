@@ -1,0 +1,184 @@
+wallpanel:
+  enabled: true
+  hide_toolbar: true
+  hide_sidebar: true
+  fullscreen: true
+  idle_time: 0
+views:
+  - title: Home
+    type: panel
+    cards:
+      - type: custom:layout-card
+        layout_type: custom:grid-layout
+        cards:
+          - type: custom:digital-clock
+            timeFormat: hh:mm
+            dateFormat: cccc, d LLLL
+            card_mod:
+              style: |
+                ha-card {
+                  position: absolute;
+                  z-index: 1;
+                  text-align: left !important;
+                  background-color: transparent !important;
+                  border: none !important;
+                  padding-left: 15px !important;
+                }
+                .first-line {
+                  font-size: 200px !important;
+                  letter-spacing: -2px;
+                  font-weight: 300;
+                  font-family: "Roboto", sans-serif;
+                  color: #FFFFFF;
+                  text-shadow: 5px 5px 5px #000000;
+                }
+                .second-line {
+                  font-size: 60px !important;
+                  font-weight: 400;
+                  font-family: "Roboto", sans-serif;
+                  color: #FFFFFF;
+                  text-shadow: 5px 5px 5px #000000;
+                }
+            view_layout:
+              grid-area: photo
+          - type: custom:refreshable-picture-card
+            url: /local/images/icloud_photo.jpg
+            noMargin: true
+            refresh_interval: 3
+            card_mod:
+              style: |
+                ha-card {
+                  align-items: center;
+                  justify-content: center;
+                  height: 100%;
+                  overflow: hidden;
+                }
+                img {
+                  height: 1080px;
+                  position: absolute;
+                  object-fit: cover;
+                }
+            view_layout:
+              grid-area: photo
+          - type: custom:week-planner-card
+            calendars:
+              - entity: calendar.family
+                color: '#00cc66'
+              - entity: calendar.family_work
+                color: '#1a8fe3'
+              - entity: calendar.waste_collection
+                color: '#e6c229'
+            days: 28
+            startingDay: sunday
+            noCardBackground: true
+            eventBackground: rgba(0, 0, 0, .75)
+            updateInterval: 600
+            texts:
+              today: ''
+              tomorrow: ''
+              yesterday: ''
+              fullDay: ''
+              noEvents: ''
+              sunday: S
+              monday: M
+              tuesday: T
+              wednesday: W
+              thursday: T
+              friday: F
+              saturday: S
+            card_mod:
+              style:
+                .: |
+                  ha-card {
+                    margin-top: 0px;
+                    font-size: 9px !important;
+                    overflow: hidden;
+                    --days-spacing: 10px;
+                    --event-padding: 2px !important;
+                    --events-margin-top: 1px;
+                    --event-border-width: 2px;
+                  }
+                  .event.past {
+                    opacity: 0.3;
+                  }
+                  .none {
+                    background-color: transparent !important;
+                  }
+                  .container .day {
+                    width: calc((100% - 6 * var(--days-spacing)) / 7) !important;
+                  }
+                  .container .day .date {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                  .container .day .date .number {
+                    order: 2;
+                    height: 40px;
+                    width: 40px;
+                    padding: 8px;
+                    margin-top: 5px;
+                    display: table-cell;
+                    vertical-align: middle;
+                    text-align: center;
+                    font-weight: 300;
+                    font-family: "Roboto", sans-serif;
+                  }
+                  .container .day .date .text {
+                    order: 1;
+                    font-weight: 500;
+                    font-family: "Roboto", sans-serif;
+                    font-size: 18px !important;
+                  }
+                  .today .date .number {
+                    background-color: #ff0000 !important;
+                    border-radius: 50%;
+                  }
+                  .container .day:nth-child(n+8) .date .text {
+                    display: none;
+                  }
+            view_layout:
+              grid-area: cal
+          - type: weather-forecast
+            entity: weather.forecast_home
+            forecast_type: daily
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0, 0, 0, 0) !important;
+                  border: none !important;
+                }
+            view_layout:
+              grid-area: weather
+          - type: button
+            show_name: false
+            show_icon: true
+            icon: mdi:page-next-outline
+            tap_action:
+              action: call-service
+              service: browser_mod.navigate
+              target: {}
+              data:
+                path: /wall-panel-2/screen1
+            card_mod:
+              style: |
+                ha-card {
+                  background-color: rgba(0, 0, 0, 0) !important;
+                  border: none !important;
+                }
+                ha-state-icon {
+                  color: #e1e1e1 !important;
+                }
+            view_layout:
+              grid-area: next
+        layout:
+          margin: 0px 0px 0px 0px
+          card_margin: 0px 0px 0px 0px
+          grid-template-columns: repeat(10, 1fr)
+          grid-template-rows: repeat(4, 270px)
+          grid-template-areas: |
+            "photo photo photo photo photo photo cal cal cal cal"
+            "photo photo photo photo photo photo cal cal cal cal"
+            "photo photo photo photo photo photo cal cal cal cal"
+            "photo photo photo photo photo photo weather weather weather next"
