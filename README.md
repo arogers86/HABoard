@@ -39,56 +39,56 @@ Summary of modifications:
 ```yaml
 card_mod:
   style:
-	.: |
-	  ha-card {
-		margin-top: 0px;
-		font-size: 9px !important;
-		overflow: hidden;
-		--days-spacing: 10px;
-		--event-padding: 2px !important;
-		--events-margin-top: 1px;
-		--event-border-width: 2px;
-	  }
-	  .event.past {
-		opacity: 0.3;
-	  }
-	  .none {
-		background-color: transparent !important;
-	  }
-	  .container .day {
-		width: calc((100% - 6 * var(--days-spacing)) / 7) !important;
-	  }
-	  .container .day .date {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	  }
-	  .container .day .date .number {
-		order: 2;
-		height: 40px;
-		width: 40px;
-		padding: 8px;
-		margin-top: 5px;
-		display: table-cell;
-		vertical-align: middle;
-		text-align: center;
-		font-weight: 300;
-		font-family: "Roboto", sans-serif;
-	  }
-	  .container .day .date .text {
-		order: 1;
-		font-weight: 500;
-		font-family: "Roboto", sans-serif;
-		font-size: 18px !important;
-	  }
-	  .today .date .number {
-		background-color: #ff0000 !important;
-		border-radius: 50%;
-	  }
-	  .container .day:nth-child(n+8) .date .text {
-		display: none;
-	  }
+    .: |
+      ha-card {
+        margin-top: 0px;
+        font-size: 9px !important;
+        overflow: hidden;
+        --days-spacing: 10px;
+        --event-padding: 2px !important;
+        --events-margin-top: 1px;
+        --event-border-width: 2px;
+      }
+      .event.past {
+        opacity: 0.3;
+      }
+      .none {
+        background-color: transparent !important;
+      }
+      .container .day {
+        width: calc((100% - 6 * var(--days-spacing)) / 7) !important;
+      }
+      .container .day .date {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .container .day .date .number {
+        order: 2;
+        height: 40px;
+        width: 40px;
+        padding: 8px;
+        margin-top: 5px;
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        font-weight: 300;
+        font-family: "Roboto", sans-serif;
+      }
+      .container .day .date .text {
+        order: 1;
+        font-weight: 500;
+        font-family: "Roboto", sans-serif;
+        font-size: 18px !important;
+      }
+      .today .date .number {
+        background-color: #ff0000 !important;
+        border-radius: 50%;
+      }
+      .container .day:nth-child(n+8) .date .text {
+        display: none;
+      }
 ```
 
 
