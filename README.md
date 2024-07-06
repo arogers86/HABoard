@@ -29,6 +29,7 @@ HABoard relies on the following custom components:
 
 ## Weekly Planner Config
 The weekly planner has been heavily modified by use of [card-mod](https://github.com/thomasloven/lovelace-card-mod).
+
 Summary of modifications:
 1. **Weekdays are shown above first row of days**
 2. **Today is highlighted with a red circle**
