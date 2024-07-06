@@ -114,7 +114,7 @@ The photo displayed on HABoard is replaced every 5 minutes. This photo is downlo
           service: shell_command.icloud_photo_download
     ```
 
-### Dashboard Configuration
+### Picture Card Configuration
 The photo card on the dashboard refreshes the image every 3 seconds. When a new photo is downloaded, it will be updated on the dashboard accordingly.
 
 Example configuration for the photo card:
