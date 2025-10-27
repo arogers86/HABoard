@@ -92,27 +92,10 @@ card_mod:
       }
 ```
 
-
 ## Dynamic Photo Updates
-The photo displayed on HABoard is replaced every 5 minutes. This photo is downloaded from a shared iCloud album using a Python script from the [iclouder repository](https://github.com/arogers86/iclouder).
+The photo displayed on HABoard is replaced every 5 minutes using the [refreshable-picture-card](https://github.com/dimagoltsman/refreshable-picture-card).
 
-### Setup
-1. Place the `iclouder.py` script in your Home Assistant `python_scripts` directory.
-2. Add the following `shell_command` to your `configuration.yaml` file:
-    ```yaml
-    shell_command:
-      icloud_photo_download: python3 /config/python_scripts/iclouder.py <Your Token> --destination www/images/ --single --filename icloud_photo.jpg --ignore 50
-    ```
-3. Create a Home Assistant automation to call this shell command every 5 minutes:
-    ```yaml
-    automation:
-      - alias: Download iCloud Photo
-        trigger:
-          platform: time_pattern
-          minutes: "/5"
-        action:
-          service: shell_command.icloud_photo_download
-    ```
+My photo is downloaded from a shared iCloud album using my iCloud Photo Downloader Cusom Component and can be found at the [home-assistant-icloud-photo-downloader repository](https://github.com/arogers86/home-assistant-icloud-photo-downloader).
 
 ### Picture Card Configuration
 The photo card on the dashboard refreshes the image every 3 seconds. When a new photo is downloaded, it will be updated on the dashboard accordingly.
